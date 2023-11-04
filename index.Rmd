@@ -11,6 +11,36 @@ output:
 
 ## Project thoughts
 
-Does more citizen engagement lead in public comment portions lead to bill advancement? I plan to analyze the effect of  comments made impact a bill's advancement in state legislatures. I will be using the "Replication Data for: Does Lobbying Affect Bill Advancement? Evidence from Three State Legislatures." I hypothesize that increased public comments made in support of a bill lead to increased chances of advancement for bills introduced by the majority party, but have a minimally positive change on the advancement of bills introduced by the minority party. This is because for bills from members of the majority party that have large engagement, it likely indicates that the bill speaks to an issue area that is a priority for the political party. In contrast, bills from that minority party with large public engagement may not overcome the partisan disadvantages of state legislatures. I'm particularly interested in the impact of public comments on a bill introduced by a minority party compared to a bill introduced by the majority party with no enagegment. Such a comparison can potentially reveal whether public comments can overcome partisan disadvantages. The explanatory variable is the amount of pyblic comments made for a bill and against a bill. This can reflect lobbying for and against a bill. The outcome variable is how far the bill advances in the state legislator.  If a bill introduced by the majority party with a significant number of public comments in favor advanced in the state legislature, this would support my hypothesis. Likewise, if a bill introduced by a minority party with a significant number of public comments in favor, and it does not advance in the state legislature, it would support my hypoethesis. 
+Does more citizen engagement lead in public comment portions lead to bill advancement? I plan to analyze the effect of  comments made impact a bill's advancement in state legislatures. I will be using the "Replication Data for: Does Lobbying Affect Bill Advancement? Evidence from Three State Legislatures." I hypothesize that increased public comments made in support of a bill lead to increased chances of advancement for bills introduced by the majority party, but have a minimally positive change on the advancement of bills introduced by the minority party. This is because for bills from members of the majority party that have large engagement, it likely indicates that the bill speaks to an issue area that is a priority for the political party. In contrast, bills from that minority party with large public engagement may not overcome the partisan disadvantages of state legislatures. I'm particularly interested in the impact of public comments on a bill introduced by a minority party compared to a bill introduced by the majority party with no enagegment. Such a comparison can potentially reveal whether public comments can overcome partisan disadvantages. The explanatory variable is the amount of pyblic comments made for a bill and against a bill. This can reflect lobbying for and against a bill. The outcome variable is how far the bill advances in the state legislator.  If a bill introduced by the majority party with a significant number of public comments in favor advanced in the state legislature, this would support my hypothesis. Likewise, if a bill introduced by a minority party with a significant number of public comments in favor, and it does not advance in the state legislature, it would support my hypothesis. 
 
+## DATA VISUALIZATION
+```{r} 
+library(tidyverse)
+library(ggplot2)
+library(broom)
+lobbying_on_advancement <- read_csv("dataverse_files/lobbying_on_advancement.csv") 
+```
+
+```{r}
+lobbying_on_advancement
+```
+```{r} 
+Scatterplot_For_Against <- lobbying_on_advancement |> 
+mutate(adopted = 
+if_else(enacted==1, "Adopted", "Rejected")) |>
+  ggplot(lobbying_on_advancement, 
+         mapping = aes(x = for_against_balance_before_final, y = adopted)) + 
+  geom_boxplot() + labs(
+    x = "Net Lobbying",
+    y = "Final Bill Status",
+    title = "Relationship Between Net Lobbying Activity and Bill Adoption",
+    subtitle = "Net Lobbying Defined As Number of Lobbyists For - Number of Lobbyists Against",
+    source = "Does Lobbying Affect Bill Advancement? Evidence from Three State Legislatures, 2022") + 
+  theme(
+    plot.subtitle = element_text(size = 9)
+    ) +
+scale_x_continuous(breaks = scales::pretty_breaks(n = 10))
+
+Scatterplot_For_Against
+```
 

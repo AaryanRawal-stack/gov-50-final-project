@@ -115,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.24/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["dataverse_files/CODEBOOK.txt","dataverse_files/Create Figures from Lobbyist Survey.do","dataverse_files/lobbying_on_advancement.csv","dataverse_files/Lobbyist Survey.dta","dataverse_files/README.txt","dataverse_files/replication_code.R","dataverse_files/vote_switching.csv","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-3-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.24/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1518,8 +1518,64 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 <div class="d-article">
 <h2 id="project-thoughts">Project thoughts</h2>
-<p>Does more citizen engagement lead in public comment portions lead to bill advancement? I plan to analyze the effect of comments made impact a bill’s advancement in state legislatures. I will be using the “Replication Data for: Does Lobbying Affect Bill Advancement? Evidence from Three State Legislatures.” I hypothesize that increased public comments made in support of a bill lead to increased chances of advancement for bills introduced by the majority party, but have a minimally positive change on the advancement of bills introduced by the minority party. This is because for bills from members of the majority party that have large engagement, it likely indicates that the bill speaks to an issue area that is a priority for the political party. In contrast, bills from that minority party with large public engagement may not overcome the partisan disadvantages of state legislatures. I’m particularly interested in the impact of public comments on a bill introduced by a minority party compared to a bill introduced by the majority party with no enagegment. Such a comparison can potentially reveal whether public comments can overcome partisan disadvantages. The explanatory variable is the amount of pyblic comments made for a bill and against a bill. This can reflect lobbying for and against a bill. The outcome variable is how far the bill advances in the state legislator. If a bill introduced by the majority party with a significant number of public comments in favor advanced in the state legislature, this would support my hypothesis. Likewise, if a bill introduced by a minority party with a significant number of public comments in favor, and it does not advance in the state legislature, it would support my hypoethesis.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>Does more citizen engagement lead in public comment portions lead to bill advancement? I plan to analyze the effect of comments made impact a bill’s advancement in state legislatures. I will be using the “Replication Data for: Does Lobbying Affect Bill Advancement? Evidence from Three State Legislatures.” I hypothesize that increased public comments made in support of a bill lead to increased chances of advancement for bills introduced by the majority party, but have a minimally positive change on the advancement of bills introduced by the minority party. This is because for bills from members of the majority party that have large engagement, it likely indicates that the bill speaks to an issue area that is a priority for the political party. In contrast, bills from that minority party with large public engagement may not overcome the partisan disadvantages of state legislatures. I’m particularly interested in the impact of public comments on a bill introduced by a minority party compared to a bill introduced by the majority party with no enagegment. Such a comparison can potentially reveal whether public comments can overcome partisan disadvantages. The explanatory variable is the amount of pyblic comments made for a bill and against a bill. This can reflect lobbying for and against a bill. The outcome variable is how far the bill advances in the state legislator. If a bill introduced by the majority party with a significant number of public comments in favor advanced in the state legislature, this would support my hypothesis. Likewise, if a bill introduced by a minority party with a significant number of public comments in favor, and it does not advance in the state legislature, it would support my hypothesis.</p>
+<h2 id="data-visualization">DATA VISUALIZATION</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://broom.tidymodels.org/'>broom</a></span><span class='op'>)</span></span>
+<span><span class='va'>lobbying_on_advancement</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>"dataverse_files/lobbying_on_advancement.csv"</span><span class='op'>)</span> </span></code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>lobbying_on_advancement</span></span></code></pre>
+</div>
+<pre><code># A tibble: 26,051 × 36
+   state session state_session bill_number legtype enacted
+   &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;
+ 1 CO       2007 CO2007               1001 HB            1
+ 2 CO       2007 CO2007               1002 HB            0
+ 3 CO       2007 CO2007               1003 HB            1
+ 4 CO       2007 CO2007               1004 HB            1
+ 5 CO       2007 CO2007               1005 HB            1
+ 6 CO       2007 CO2007               1006 HB            0
+ 7 CO       2007 CO2007               1007 HB            0
+ 8 CO       2007 CO2007               1008 HB            1
+ 9 CO       2007 CO2007               1009 HB            1
+10 CO       2007 CO2007               1010 HB            1
+# ℹ 26,041 more rows
+# ℹ 30 more variables: passed_chamber &lt;dbl&gt;, reached_floor &lt;dbl&gt;,
+#   passed_committee &lt;dbl&gt;, num_for_before_committee &lt;dbl&gt;,
+#   num_against_before_committee &lt;dbl&gt;, num_for_before_floor &lt;dbl&gt;,
+#   num_against_before_floor &lt;dbl&gt;, num_for_before_pass &lt;dbl&gt;,
+#   num_against_before_pass &lt;dbl&gt;, num_for_before_final &lt;dbl&gt;,
+#   num_against_before_final &lt;dbl&gt;, num_other_before_final &lt;dbl&gt;, …</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Scatterplot_For_Against</span> <span class='op'>&lt;-</span> <span class='va'>lobbying_on_advancement</span> <span class='op'>|&gt;</span> </span>
+<span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>adopted <span class='op'>=</span> </span>
+<span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/if_else.html'>if_else</a></span><span class='op'>(</span><span class='va'>enacted</span><span class='op'>==</span><span class='fl'>1</span>, <span class='st'>"Adopted"</span>, <span class='st'>"Rejected"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>lobbying_on_advancement</span>, </span>
+<span>         mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>for_against_balance_before_final</span>, y <span class='op'>=</span> <span class='va'>adopted</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_boxplot.html'>geom_boxplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span></span>
+<span>    x <span class='op'>=</span> <span class='st'>"Net Lobbying"</span>,</span>
+<span>    y <span class='op'>=</span> <span class='st'>"Final Bill Status"</span>,</span>
+<span>    title <span class='op'>=</span> <span class='st'>"Relationship Between Net Lobbying Activity and Bill Adoption"</span>,</span>
+<span>    subtitle <span class='op'>=</span> <span class='st'>"Net Lobbying Defined As Number of Lobbyists For - Number of Lobbyists Against"</span>,</span>
+<span>    source <span class='op'>=</span> <span class='st'>"Does Lobbying Affect Bill Advancement? Evidence from Three State Legislatures, 2022"</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span></span>
+<span>    plot.subtitle <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>9</span><span class='op'>)</span></span>
+<span>    <span class='op'>)</span> <span class='op'>+</span></span>
+<span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_x_continuous</a></span><span class='op'>(</span>breaks <span class='op'>=</span> <span class='fu'>scales</span><span class='fu'>::</span><span class='fu'><a href='https://scales.r-lib.org/reference/pretty_breaks.html'>pretty_breaks</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>Scatterplot_For_Against</span></span></code></pre>
+</div>
+<p><img src="index_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
+</div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
