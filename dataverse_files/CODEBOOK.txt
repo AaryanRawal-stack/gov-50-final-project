@@ -1,0 +1,52 @@
+Codebook for ``Does Lobbying Affect Bill Advancement?  Evidence from Three State Legislatures"
+
+lobbying_on_advancement.csv
+--state--State from which the bill was from
+--session--For NE and WI, first year of the legislative session in which the bill was introduced (i.e., 2007 is the 2007-08 session); for CO, the year of the legislative session in which the bill was introduced
+--state_session--Indicator for the bill's state-session dyad
+--bill_number--The number of the bill
+--leg_type--The type of bill (i.e., typically an indication of chamber of origin)
+--enacted--A binary indicator for whether the bill was enacted (1) or not (0)
+--passed_chamber--A binary indicator for whether the bill passed in its chamber of origin (1) or not (0)
+--reached_floor--A binary indicator for whether the bill reached the floor in its chamber of origin (1) or not (0)
+--passed_committee--A binary indicator for whether the bill emerged from the committee process in its chamber of origin (1) or not (0)
+--num_for_before_committee--A count of how many interests took positions in support of the bill before it emerged from the committee process in its chamber of origin (WI only)
+--num_against_before_committee--A count of how many interests took positions in opposition to the bill before it emerged from the committee process in its chamber of origin (WI only)
+--num_for_before_floor--A count of how many interests took positions in support of the bill before it reached the floor in its chamber of origin (WI only)
+--num_against_before_floor--A count of how many interests took positions in opposition to the bill before it reached the floor in its chamber of origin (WI only)
+--num_for_before_pass--A count of how many interests took positions in support of the bill before it passed in its chamber of origin (WI only)
+--num_against_before_pass--A count of how many interests took positions in opposition to the bill before it passed in its chamber of origin (WI only)
+--num_for_before_final--A count of how many interests took positions in support of the bill at any point during the legislative session
+--num_against_before_final--A count of how many interests took positions in opposition to the bill at any point during the legislative session
+--num_other_before_final--A count of how many interests took positions that were not explicitly supportive or opposed to the bill at any point during the legislative session
+for_against_balance_before_final--The difference between the number of interests taking positions for the bill vs. the number of interests taking positions against the bill
+--num_for_against_total_before_final--The sum of the number of interests taking positions for or against the bill
+--for_against_final--An indicator of the pattern of lobbying on the bill by the end of the legislative session; takes on values of none, only for, only against, and for and against.
+--for_against_pass--An indicator of the pattern of lobbying on the bill before it passes in its chamber of origin; takes on values of none, only for, only against, and for and against (WI only).
+--for_against_floor--An indicator of the pattern of lobbying on the bill before reached the floor in its chamber of origin; takes on values of none, only for, only against, and for and against (WI only).
+--for_against_committee--An indicator of the pattern of lobbying on the bill before emerged from the committee process in its chamber of origin; takes on values of none, only for, only against, and for and against (WI only).
+for_against_other_final--An indicator of the pattern of lobbying on the bill by the end of the legislative session with ``other" included; takes on values of none, only for, only against, for and against, other, for and other, against and other, and for, against, and other.
+--for_against_other_pass--An indicator of the pattern of lobbying on the bill before it passes in its chamber of origin with ``other" included; takes on values of none, only for, only against, for and against, other, for and other, against and other, and for, against, and other (WI only).
+--for_against_other_floor--An indicator of the pattern of lobbying on the bill before reached the floor in its chamber of origin with ``other" included; takes on values of none, only for, only against, for and against, other, for and other, against and other, and for, against, and other (WI only).
+--for_against_other_committee--An indicator of the pattern of lobbying on the bill before emerged from the committee process in its chamber of origin with ``other" included; takes on values of none, only for, only against, for and against, other, for and other, against and other, and for, against, and other (WI only).
+--chamber_pol--Chamber polarization from Shor and McCarty (2011)
+--intro_pid--factor variable indicating the partisanship of the bill's sponsor(s).  If only legislators in the majority sponsor the bill, this variable is coded as ``majority."  If only legislators in the minority sponsor the bill, this variable is coded as ``minority."  If legislators in the majority and minority sponsor the bill, this variable is coded as ``indeterminate."
+--maj_leader_intro--Binary indicator for whether the bill was sponsored by a majority leader (1) or not (0)
+--min_leader_intro--Binary indicator for whether the bill was sponsored by a minority leader (1) or not (0)
+squire--Squire professionalization from Squire (2017).
+duplicate_vote--Binary indicator for whether the bill was considered in a previous legislative session (1) or not (0).
+key_vote--Binary indicator for wheher the bill was identified as a key vote by Project Vote Smart (1) or not (0).
+
+Lobbyist Survey.dta (See Figure 1 in paper for complete question wording)
+--who_determine--Is based on the survey question “Who decided whether to take a position on this bill?”; takes on values  "It was my decision (1)", "It was a decision of the principal (2)", and "It was a joint decision between me and the principal (3)"
+--why_determine--Is based on the survey question “What was the most important determinant in deciding whether to lobby on the bill?” takes on values "The strength of my client's interest/stake in the proposal (1)", "How likely the proposal was to become law (2)", "These two factors were equally important (3)", "Neither of these two factors were important (other factors drive the decision to lobby). Please elaborate in the provided space.  _________________ (4)"
+--certainty_outcome--Is based on the survey question “When you took the position on the bill, how certain were you that the bill would be enacted into law?”; takes on values "Very certain that it would be enacted into law (1)", "Somewhat certain that it would be enacted into law (2)", "Uncertain of the outcome (3)", "Somewhat certain that it would not be enacted into law (4)", "Very certain that it would not be enacted into law (5)"
+
+vote_switching.csv
+--session--First year of the legislative session in which the bill was introduced 
+--bill_type--The type of bill (i.e., typically an indication of chamber of origin)
+--bill_number--The number of the bill
+--legislator--The name of the legislator
+--floor_stage_vote--Binary indicator for whether the legislator voted for (1) or against (0) the bill on the floor
+--committee_stage_vote--Binary indicator for whether the legislator voted for (1) or against (0) the bill in committee
+--type_lobbying--An indicator of the pattern of lobbying on the bill as described in Table 6 of the main paper.
