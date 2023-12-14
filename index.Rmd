@@ -7,7 +7,7 @@ output:
     self_contained: false
 ---
 
-## INTRODUCTION
+## Introduction
 
 As I entered advocacy spaces in local and state government, advocacy groups emphasized the centrality of communicating policy positions to legislators in lobbying processes (ie public comment, private meetings, and private correspondents with the legislator's office). Indeed, some groups claimed that packing a committee room was ultimately a more influential factor in a bill's prospect than partisanship, even though my home-state of Virginia has experienced a significant rise in partisanship in its legislature.
 
@@ -15,7 +15,7 @@ As I entered advocacy spaces in local and state government, advocacy groups emph
 While the centrality of lobbying is widely accepted in local and state politics, the claim is grounded in anecdotal evidence - anecdotal evidence that may no longer hold true in an increasingly hyper-partisan political environment. In this analysis, I consider if more civic engagements lead to bill advancement. Using the replication data from "Does Lobbying Affect Bill Advancement? Evidence from Three State Legislatures," I plan to treat the number of positions taken as my independent variable, and the bill's status as my dependent variable. I hypothesize that bills that have higher numbers of supportive positions will have more positive advancement outcomes, for higher public engagement indicates that the bill is a public priority. Further, I hypothesize that while there will still be a positive relationship between the number of supportive lobbyists and positive advancement outcomes for bills, this relationship will weaken as the process advances, simply because lobbyist relationships may not be as strong outside of specialized committees. Ultimately, this analysis can help non-profits, advocacy groups, and other organized interests guide their advocacy strategy. 
 
 
-## THE DATA
+## The Data
 
 I use the replication data from "Does Lobbying Affect Bill Advancement? Evidence from Three State Legislatures" (Butler and Miller). The dataset focuses on over 26,000 bills from Colorado, Nebraska, and Wisconsin. Lobbying data was collected through public disclosure forms, while outcomes were collected through the state legislature website. Researchers used a longitudinal cross-sectional design. 
 
@@ -56,7 +56,7 @@ It includes a number of variables, a full description of which is included in ap
 `key_vote`:  `1` if bill was deemed key vote by Project Smart, `0` if not.   
 
 ----
-## DATA MUTATIONS
+## Data Mutations
 
 I treat `enacted`, and a newly mutated version of `enacted` that assigns it the values "Enacted" and "Failed," as my primary outcome variable. This is for two reasons. Practically, there are far less "Passed Chamber", "Floor Vote", and "Passed Committee" rows than the "Enacted" and "Failed In Committee" rows (see Chart A). Second, and more substantively, though interest groups may be interested to know at what part of the legislative process lobbying activities are successful, they are ultimately are more concerned with whether a bill becomes law or not. In other words, a bill that dies on the floor by one vote versus a bill that didn't even make it out of committee has the same ultimate impact: they do not become law.
 
@@ -72,7 +72,7 @@ Potential confounders include `key_vote`, `maj_leader_intro`, `intro_pid`, and `
 
 Finally, for visualization purposes, I categorize bills into "Strong Oppose" should a net 20 or more lobbyists oppose it (for_against_balance_before_final <= -20), "Oppose" should a net 10-20 lobbyists oppose it, "Neutal" should the bill have 0 net lobbyists for it, "Moderate Support" should the bill have a net 1-10 lobbyists for it, "Support" should the bill have a net 10-20 lobbyists support it, and "Strong Support" should the bill have 20 or more net lobbyists support it.
 
-## LOADING, TIDYING, MUTATING DATA
+## Loading, Tidying, and Mutating Data Code
 
 ```{r} 
 library(tidyverse)
@@ -267,12 +267,12 @@ modelsummary::modelsummary(multiregression, statistic = "p.value",
                            coef_map = varnames2)
 ```
 
-The intercept is .225, which implies that when all other variables are 0, a bill has a 22.5 percent chance of enactment Within the confounder variables, kwy vote has the greatest slope, at 0.368, which means that, holding all else constant, being considered a key vote is expected to imporve a bill's chance at enactment by 36.8 percent. Moreover, introduced by majority leader also has a greater magnitude than lobbying at 0.041, which means that, holding all else constant, should a bill be introduced by the majority leader, it will improve its chances of passing by 4.1 percent. Finally, the slope of the net lobbying positions is 0.013, which means that, holding all else constant, we expect each additional supportive position to increase a bill's chances of passage by 1.3 percent,
+The intercept is .225, which implies that when all other variables are 0, a bill has a 22.5 percent chance of enactment Within the confounder variables, key vote has the greatest slope, at 0.368, which means that, holding all else constant, being considered a key vote is expected to imporve a bill's chance at enactment by 36.8 percent. Moreover, introduced by majority leader also has a greater magnitude than lobbying at 0.041, which means that, holding all else constant, should a bill be introduced by the majority leader, it will improve its chances of passing by 4.1 percent. Finally, the slope of the net lobbying positions is 0.013, which means that, holding all else constant, we expect each additional supportive position to increase a bill's chances of passage by 1.3 percent,
 
 Because all the coeficients in this table have a p value of less than 0.001, they are significant, at an alpha level of 0.05.
 
 
-## CONCLUSION 
+## Conclusion 
   
 In this paper, I analyzed the effect lobbying had on a bill's chances of passage. 
 
@@ -285,45 +285,77 @@ There were a number of key limitations with this analysis. First, linear regress
 In the future, I'd like to shift the independent variable to the amount each lobbying organization donated in each election, with the dependent variable becoming the percentage of priorities implemented in each legislative session. Such an analysis would allow for more effective linear regression, and account for the reality that each lobbyist is not created equally. In addition, it would be interesting to expand this analysis beyond lobbying, to include public comment portions in state legislatures. Such an analysis would allow for another potential confounding variable to be considered.
 
 
-## CITATION
+## Citation
 Butler, D. M., & Miller, D. R. (2022). Does Lobbying Affect Bill Advancement? Evidence from Three State Legislatures. Political Research Quarterly, 75(3), 547-561. https://doi-org.ezp-prod1.hul.harvard.edu/10.1177/10659129211012481
 
 
 
 
-## APPENDIX A
+## Appendix A
 
 `state`: The state the bill was introduced in
+
 `session`: The year of the legislative session
+
 `statesession`: A combined variable for `state` and `session`
+
 `bill_number`: The number of the bill. 
+
 `legtype`: The type of legislation (ie House Bill, Senate Bill, etc.)
-`enacted`:  `1` if signed into law, `0` if not. 
-`passed_chamber`: `1` if bill passed the legislative chamber, `0` if not. 
-`reached_floor`: `1` if bill passed the full floor of the legislative chamber, `0` if not. 
-`passed_committee`: `1` if bill passed committee, `0` if not. 
+
+`enacted`:   `1` if signed into law, `0` if not. 
+
+`passed_chamber`:  `1` if bill passed the legislative chamber, `0` if not. 
+
+`reached_floor`:  `1` if bill passed the full floor of the legislative chamber, `0` if not. 
+
+`passed_committee`:  `1` if bill passed committee, `0` if not. 
+
 `num_for_before_committee`: Wisconsin Only - number of interests who supported bill in committee
+
 `num_against_before_committee`: Wisconsin Only - number of interests who opposed bill in committee
+
 `num_for_before_floor`: Wisconsin Only - number of interests who supported bill before it reached the floor
+
 `num_for_before_pass`: Wisconsin Only - number of interests who supported bill before it passed in chamber of origin
+
 `num_against_before_pass`: Wisconsin Only - number of interests who opposed bill before it passed in chamber of origin
+
 `num_for_before_final`: Number of interests who supported bill at any point in legislative process.
+
 `num_against_before_final`: Number of interests who opposed bill at any point in legislative process.
+
 `num_other_before_final`: Number of interests who spoke on bill, but did not speak for or against bill at any point in legislative process.
+
 `for_against_balance_before_final`: Difference between `num_for_before_final` and `num_against_before_final`   
-`for_against_final`:The sum of the number of interests taking positions for or against the bill
+
+`for_against_final`: The sum of the number of interests taking positions for or against the bill
+
 `for_against_pass`: Wisconsin only. Indicator for lobbying patterns on bills before they pass chamber of origin. Takes on values of none, only for, only against, and for and against
+
 `for_against_floor`: Wisconsin only. Indicator for lobbying patterns on bills before they reach chamber floor. Takes on values of none, only for, only against, and for and against 
+
 `for_against_committee`:  Wisconsin only. Indicator for lobbying patterns on bills during committee process. Takes on values of none, only for, only against, and for and against
+
 `for_against_other_final`: Indicator of the pattern of lobbying on the bill by the end of the legislative session with ``other" included; takes on values of none, only for, only against, for and against, other, for and other, against and other, and for, against, and other.
+
 `for_against_other_pass`: Wisconsin only. Indicator of the pattern of lobbying on the bill before it passes in its chamber of origin with ``other" included; takes on values of none, only for, only against, for and against, other, for and other, against and other, and for, against, and other
+
 `for_against_other_floor`: Wisconsin only. An indicator of the pattern of lobbying on the bill before reached the floor in its chamber of origin with ``other" included; takes on values of none, only for, only against, for and against, other, for and other, against and other, and for, against, and other
+
 `chamber_pol`: Chamber polarization from Shor and McCarty (2011).
+
 `chamber_maj_pty`: The party in control of chamber.
+
 `intro_pid`: Partisanship of all of bills sponsors, coded as "majority" if only majority party members sponsor the bill, "minority" if only minority members sponsor the bill, and "indeterminate" if legislators from both majority and minority sponsor bill.
-`maj_leader_intro`: `1` if bill introduced by majority leader, `0` if not.
-`min_leader_intro`: `1` if bill introduced by minority leader, `0` if not.
-`squire`                               Legislature Squire score (used to measure level of professionalization in state legislature)
-`duplicate_bill`: `1` if bill was introduced in previous session, `0` if not.               
+
+`maj_leader_intro`:  `1` if bill introduced by majority leader, `0` if not.
+
+`min_leader_intro`:  `1` if bill introduced by minority leader, `0` if not.
+
+`squire`: Legislature Squire score (used to measure level of professionalization in state legislature)
+
+`duplicate_bill`: `1` if bill was introduced in previous session, `0` if not.
+
 `key_vote`: `1` if bill was deemed key vote by Project Smart, `0` if not.   
 
