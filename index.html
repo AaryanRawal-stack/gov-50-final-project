@@ -115,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["dataverse_files/CODEBOOK.txt","dataverse_files/Create Figures from Lobbyist Survey.do","dataverse_files/lobbying_on_advancement.csv","dataverse_files/Lobbyist Survey.dta","dataverse_files/README.txt","dataverse_files/replication_code.R","dataverse_files/vote_switching.csv","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-3-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.24/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["dataverse_files/CODEBOOK.txt","dataverse_files/Create Figures from Lobbyist Survey.do","dataverse_files/lobbying_on_advancement.csv","dataverse_files/Lobbyist Survey.dta","dataverse_files/README.txt","dataverse_files/replication_code.R","dataverse_files/vote_switching.csv","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-3-1.png","index_files/figure-html5/unnamed-chunk-4-1.png","index_files/figure-html5/unnamed-chunk-4-2.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.24/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/kePrint-0.0.1/kePrint.js","index_files/lightable-0.0.1/lightable.css","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1473,6 +1473,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   <!--/radix_placeholder_distill-->
   <script src="index_files/header-attrs-2.24/header-attrs.js"></script>
+  <script src="index_files/kePrint-0.0.1/kePrint.js"></script>
+  <link href="index_files/lightable-0.0.1/lightable.css" rel="stylesheet" />
   <script src="index_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="index_files/popper-2.6.0/popper.min.js"></script>
   <link href="index_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -1517,65 +1519,671 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 
 <div class="d-article">
-<h2 id="project-thoughts">Project thoughts</h2>
-<p>Does more citizen engagement lead in public comment portions lead to bill advancement? I plan to analyze the effect of comments made impact a bill’s advancement in state legislatures. I will be using the “Replication Data for: Does Lobbying Affect Bill Advancement? Evidence from Three State Legislatures.” I hypothesize that increased public comments made in support of a bill lead to increased chances of advancement for bills introduced by the majority party, but have a minimally positive change on the advancement of bills introduced by the minority party. This is because for bills from members of the majority party that have large engagement, it likely indicates that the bill speaks to an issue area that is a priority for the political party. In contrast, bills from that minority party with large public engagement may not overcome the partisan disadvantages of state legislatures. I’m particularly interested in the impact of public comments on a bill introduced by a minority party compared to a bill introduced by the majority party with no enagegment. Such a comparison can potentially reveal whether public comments can overcome partisan disadvantages. The explanatory variable is the amount of pyblic comments made for a bill and against a bill. This can reflect lobbying for and against a bill. The outcome variable is how far the bill advances in the state legislator. If a bill introduced by the majority party with a significant number of public comments in favor advanced in the state legislature, this would support my hypothesis. Likewise, if a bill introduced by a minority party with a significant number of public comments in favor, and it does not advance in the state legislature, it would support my hypothesis.</p>
-<h2 id="data-visualization">DATA VISUALIZATION</h2>
+<table>
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"># INTRODUCTION</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">As I entered advocacy spaces in local and state government, advocacy groups emphasized the centrality of communicating policy positions to legislators in lobbying processes (ie public comment, private meetings, and private correspondents with the legislator’s office). Indeed, some groups claimed that packing a committee room was ultimately a more influential factor in a bill’s prospect than partisanship, even though my home-state of Virginia has experienced a significant rise in partisanship in its legislature.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">While the centrality of lobbying is widely accepted in local and state politics, the claim is grounded in anecdotal evidence - anecdotal evidence that may no longer hold true in an increasingly hyper-partisan political environment. In this analysis, I consider if more civic engagements lead to bill advancement. Using the replication data from “Does Lobbying Affect Bill Advancement? Evidence from Three State Legislatures,” I plan to treat the number of positions taken as my independent variable, and the bill’s status as my dependent variable. I hypothesize that bills that have higher numbers of supportive positions will have more positive advancement outcomes, for higher public engagement indicates that the bill is a public priority. Further, I hypothesize that while there will still be a positive relationship between the number of supportive lobbyists and positive advancement outcomes for bills, this relationship will weaken as the process advances, simply because lobbyist relationships may not be as strong outside of specialized committees. Ultimately, this analysis can help non-profits, advocacy groups, and other organized interests guide their advocacy strategy.</td>
+</tr>
+</tbody>
+</table>
+<p>#THE DATA
+I use the replication data from “Does Lobbying Affect Bill Advancement? Evidence from Three State Legislatures” (Butler and Miller). The dataset focuses on over 26,000 bills from Colorado, Nebraska, and Wisconsin. Lobbying data was collected through public disclosure forms, while outcomes were collected through the state legislature website. Researchers used a longitudinal cross-sectional design.</p>
+<p>It includes a number of variables, a full description of which is included in appendix A. For the purposes of this analysis, I focus on the following variables:</p>
+<p><code>state</code>: The state the bill was introduced in</p>
+<p><code>session</code>: The year of the legislative session</p>
+<p><code>enacted</code>: <code>1</code> if signed into law, <code>0</code> if not.</p>
+<p><code>passed_chamber</code>: 1<code>if bill passed the legislative chamber,</code>0` if not.</p>
+<p><code>reached_floor</code>:<code>1</code> if bill reached the full floor of the legislative chamber, <code>0</code> if not.</p>
+<p><code>passed_committee</code>:<code>1</code> if bill passed committee, <code>0</code> if not.</p>
+<p><code>num_for_before_final</code>: Number of interests who supported bill at any point in legislative process.</p>
+<p><code>num_against_before_final</code>: Number of interests who opposed bill at any point in legislative process.</p>
+<p><code>num_other_before_final</code>: Number of interests who spoke on bill, but did not speak for or against bill at any point in legislative process.</p>
+<p><code>for_against_balance_before_final</code>: Difference between <code>num_for_before_final</code> and <code>num_against_before_final</code></p>
+<p><code>for_against_final</code>: The sum of the number of interests taking positions for or against the bill</p>
+<p><code>chamber_maj_pty</code>: The party in control of chamber.</p>
+<p><code>intro_pid</code>: Partisanship of all of bills sponsors, coded as “majority” if only majority party members sponsor the bill, “minority” if only minority members sponsor the bill, and “indeterminate” if legislators from both majority and minority sponsor bill.</p>
+<p><code>maj_leader_intro</code>: <code>1</code> if bill introduced by majority leader, <code>0</code> if not.</p>
+<p><code>min_leader_intro</code>: <code>1</code> if bill introduced by minority leader, <code>0</code> if not.</p>
+<p><code>key_vote</code>: <code>1</code> if bill was deemed key vote by Project Smart, <code>0</code> if not.</p>
+<p>I treat <code>enacted</code>, and a newly mutated version of <code>enacted</code> that assigns it the values “Enacted” and “Failed,” as my primary outcome variable. This is for two reasons. Practically, there are far less “Passed Chamber”, “Floor Vote”, and “Passed Committee” rows than the “Enacted” and “Failed In Committee” rows (see Chart A). Second, and more substantively, though interest groups may be interested to know at what part of the legislative process lobbying activities are successful, they are ultimately are more concerned with whether a bill becomes law or not. In other words, a bill that dies on the floor by one vote versus a bill that didn’t even make it out of committee has the same ultimate impact: they do not become law.</p>
+<p>Moreover, because it is informative to understand when lobbying’s impact diminishes, I will also treat <code>passed_chamber</code>, <code>reached_floor</code>, and <code>passed_committee</code> as relavent outcome variables.</p>
+<p>I also create a number of new variables, largely to assist in drawing plots, as many outcome variables are binary variables that can make it difficult to visualize relationships. First, I create the variable <code>advancement_breakdown</code>. <code>advancement_breakdown</code> will be used to visualize a bill’s advancement more in-depth. It sorts bills into five categories, based on their final status: “Enacted”, “Passed Chamber”, “Floor Vote”, “Passed Committee”, and “Failed In Committee”.</p>
+<p>The advantage of the <code>advancement_breakdown</code> variable is that it combines the <code>enacted</code>, <code>passed_chamber</code>, <code>reached_floor</code>, and <code>passed_committee</code> variables into one succinct variable that summarizes a bill’s status, without categorizing bills with divergent outcomes into the same outcome, as the <code>"original binary variables did</code>enactment<code>variable does (ie</code>enacted` would categorize a bill that made it to out of the chamber but failed to be enacted as the same as a bill that didn’t even make it out committee). It is key that interest groups understand when, if ever, lobbying becomes less effective, for it may necessitate a switch in legislative advocacy approaches.</p>
+<p>My primary independent variable will be <code>for_against_balance_before_final,</code> as a means to gauge the extent to which organized interests supported a bill.</p>
+<p>Potential confounders include <code>key_vote</code>, <code>maj_leader_intro</code>, <code>intro_pid</code>, and <code>for_against_final</code>. To include <code>intro_pid</code> in regression analysis, I mutate it to a binary variable <code>intro_maj</code>, where 1 indicates that the bill’s sponsors belong to the majority party, and 0 in all other cases.</p>
+#LOADING, TIDYING, MUTATING DATA
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/tidymodels/infer'>infer</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span></span>
 <span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://modelr.tidyverse.org'>modelr</a></span><span class='op'>)</span></span>
 <span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://broom.tidymodels.org/'>broom</a></span><span class='op'>)</span></span>
-<span><span class='va'>lobbying_on_advancement</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>"dataverse_files/lobbying_on_advancement.csv"</span><span class='op'>)</span> </span></code></pre>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://modelsummary.com'>modelsummary</a></span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>lobbying_on_advancement</span></span></code></pre>
-</div>
-<pre><code># A tibble: 26,051 × 36
-   state session state_session bill_number legtype enacted
-   &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;
- 1 CO       2007 CO2007               1001 HB            1
- 2 CO       2007 CO2007               1002 HB            0
- 3 CO       2007 CO2007               1003 HB            1
- 4 CO       2007 CO2007               1004 HB            1
- 5 CO       2007 CO2007               1005 HB            1
- 6 CO       2007 CO2007               1006 HB            0
- 7 CO       2007 CO2007               1007 HB            0
- 8 CO       2007 CO2007               1008 HB            1
- 9 CO       2007 CO2007               1009 HB            1
-10 CO       2007 CO2007               1010 HB            1
-# ℹ 26,041 more rows
-# ℹ 30 more variables: passed_chamber &lt;dbl&gt;, reached_floor &lt;dbl&gt;,
-#   passed_committee &lt;dbl&gt;, num_for_before_committee &lt;dbl&gt;,
-#   num_against_before_committee &lt;dbl&gt;, num_for_before_floor &lt;dbl&gt;,
-#   num_against_before_floor &lt;dbl&gt;, num_for_before_pass &lt;dbl&gt;,
-#   num_against_before_pass &lt;dbl&gt;, num_for_before_final &lt;dbl&gt;,
-#   num_against_before_final &lt;dbl&gt;, num_other_before_final &lt;dbl&gt;, …</code></pre>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Scatterplot_For_Against</span> <span class='op'>&lt;-</span> <span class='va'>lobbying_on_advancement</span> <span class='op'>|&gt;</span> </span>
-<span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>adopted <span class='op'>=</span> </span>
-<span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/if_else.html'>if_else</a></span><span class='op'>(</span><span class='va'>enacted</span><span class='op'>==</span><span class='fl'>1</span>, <span class='st'>"Adopted"</span>, <span class='st'>"Rejected"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>lobbying_on_advancement</span>, </span>
-<span>         mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>for_against_balance_before_final</span>, y <span class='op'>=</span> <span class='va'>adopted</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> </span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_boxplot.html'>geom_boxplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span></span>
-<span>    x <span class='op'>=</span> <span class='st'>"Net Lobbying"</span>,</span>
-<span>    y <span class='op'>=</span> <span class='st'>"Final Bill Status"</span>,</span>
-<span>    title <span class='op'>=</span> <span class='st'>"Relationship Between Net Lobbying Activity and Bill Adoption"</span>,</span>
-<span>    subtitle <span class='op'>=</span> <span class='st'>"Net Lobbying Defined As Number of Lobbyists For - Number of Lobbyists Against"</span>,</span>
-<span>    source <span class='op'>=</span> <span class='st'>"Does Lobbying Affect Bill Advancement? Evidence from Three State Legislatures, 2022"</span><span class='op'>)</span> <span class='op'>+</span> </span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span></span>
-<span>    plot.subtitle <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>9</span><span class='op'>)</span></span>
-<span>    <span class='op'>)</span> <span class='op'>+</span></span>
-<span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_x_continuous</a></span><span class='op'>(</span>breaks <span class='op'>=</span> <span class='fu'>scales</span><span class='fu'>::</span><span class='fu'><a href='https://scales.r-lib.org/reference/pretty_breaks.html'>pretty_breaks</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span><span class='op'>)</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>lobbying_activities</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>"dataverse_files/lobbying_on_advancement.csv"</span><span class='op'>)</span> </span>
+<span><span class='va'>lobbying_activities</span><span class='op'>$</span><span class='va'>enacted</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>lobbying_activities</span><span class='op'>$</span><span class='va'>enacted</span><span class='op'>)</span></span>
+<span><span class='va'>lobbying_activities</span><span class='op'>$</span><span class='va'>passed_chamber</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>lobbying_activities</span><span class='op'>$</span><span class='va'>passed_chamber</span><span class='op'>)</span></span>
+<span><span class='va'>lobbying_activities</span><span class='op'>$</span><span class='va'>passed_committee</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>lobbying_activities</span><span class='op'>$</span><span class='va'>passed_committee</span><span class='op'>)</span></span>
+<span><span class='va'>lobbying_activities</span><span class='op'>$</span><span class='va'>for_against_balance_before_final</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>lobbying_activities</span><span class='op'>$</span><span class='va'>for_against_balance_before_final</span><span class='op'>)</span></span>
+<span><span class='va'>lobbying_activities</span><span class='op'>$</span><span class='va'>reached_floor</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>lobbying_activities</span><span class='op'>$</span><span class='va'>reached_floor</span><span class='op'>)</span></span>
 <span></span>
-<span><span class='va'>Scatterplot_For_Against</span></span></code></pre>
+<span><span class='va'>lobbying_activities</span> <span class='op'>&lt;-</span> <span class='va'>lobbying_activities</span> <span class='op'>|&gt;</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>total_advancement <span class='op'>=</span> <span class='va'>enacted</span> <span class='op'>+</span> <span class='va'>passed_chamber</span> <span class='op'>+</span> <span class='va'>passed_committee</span> <span class='op'>+</span> <span class='va'>reached_floor</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>lobbying_activities</span> <span class='op'>&lt;-</span> <span class='va'>lobbying_activities</span> <span class='op'>|&gt;</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>advancement_breakdown <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span></span>
+<span>  <span class='va'>total_advancement</span> <span class='op'>==</span> <span class='fl'>4</span> <span class='op'>~</span> <span class='st'>"Enacted"</span>, </span>
+<span>  <span class='va'>total_advancement</span> <span class='op'>==</span> <span class='fl'>3</span> <span class='op'>~</span> <span class='st'>"Passed Chamber"</span>, </span>
+<span>  <span class='va'>total_advancement</span> <span class='op'>==</span> <span class='fl'>2</span> <span class='op'>~</span> <span class='st'>"Floor Vote"</span>, </span>
+<span>  <span class='va'>total_advancement</span> <span class='op'>==</span> <span class='fl'>1</span> <span class='op'>~</span> <span class='st'>"Passed Committee"</span>,</span>
+<span>  <span class='va'>total_advancement</span> <span class='op'>==</span> <span class='fl'>0</span> <span class='op'>~</span> <span class='st'>"Failed In Committee"</span><span class='op'>)</span><span class='op'>)</span> </span>
+<span></span>
+<span><span class='va'>lobbying_activities</span> <span class='op'>&lt;-</span> <span class='va'>lobbying_activities</span> <span class='op'>|&gt;</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>level_of_support <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span></span>
+<span><span class='va'>for_against_balance_before_final</span> <span class='op'>&lt;=</span> <span class='op'>-</span><span class='fl'>20</span> <span class='op'>~</span> <span class='st'>"Strong Oppose"</span>,</span>
+<span><span class='va'>for_against_balance_before_final</span> <span class='op'>&lt;=</span> <span class='op'>-</span><span class='fl'>10</span> <span class='op'>&amp;</span> <span class='va'>for_against_balance_before_final</span> <span class='op'>&gt;</span> <span class='op'>-</span><span class='fl'>20</span> <span class='op'>~</span> <span class='st'>"Oppose"</span>,</span>
+<span><span class='va'>for_against_balance_before_final</span> <span class='op'>&lt;</span> <span class='fl'>0</span> <span class='op'>&amp;</span> <span class='va'>for_against_balance_before_final</span> <span class='op'>&gt;</span> <span class='op'>-</span><span class='fl'>10</span> <span class='op'>~</span> <span class='st'>"Moderate Oppose"</span>,</span>
+<span><span class='va'>for_against_balance_before_final</span> <span class='op'>==</span> <span class='fl'>0</span> <span class='op'>~</span> <span class='st'>"Neutral"</span>,</span>
+<span><span class='va'>for_against_balance_before_final</span> <span class='op'>&gt;</span> <span class='fl'>0</span> <span class='op'>&amp;</span> <span class='va'>for_against_balance_before_final</span> <span class='op'>&lt;</span> <span class='fl'>10</span> <span class='op'>~</span> <span class='st'>"Moderate Support"</span>,</span>
+<span><span class='va'>for_against_balance_before_final</span> <span class='op'>&gt;=</span> <span class='fl'>10</span>  <span class='op'>&amp;</span> <span class='va'>for_against_balance_before_final</span> <span class='op'>&lt;</span> <span class='fl'>20</span> <span class='op'>~</span> <span class='st'>"Support"</span>,</span>
+<span><span class='va'>for_against_balance_before_final</span> <span class='op'>&gt;=</span> <span class='fl'>20</span> <span class='op'>~</span> <span class='st'>"Strong Support"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>lobbying_activities</span> <span class='op'>&lt;-</span> <span class='va'>lobbying_activities</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>final_status <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span></span>
+<span>    <span class='va'>enacted</span> <span class='op'>==</span> <span class='fl'>1</span> <span class='op'>~</span> <span class='st'>"Enacted"</span>, </span>
+<span>    <span class='va'>enacted</span> <span class='op'>==</span> <span class='fl'>0</span> <span class='op'>~</span> <span class='st'>"Failed"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>lobbying_activities</span> <span class='op'>&lt;-</span> <span class='va'>lobbying_activities</span> <span class='op'>|&gt;</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>level_of_support <span class='op'>=</span> <span class='fu'><a href='https://forcats.tidyverse.org/reference/fct_relevel.html'>fct_relevel</a></span><span class='op'>(</span><span class='va'>level_of_support</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Strong Oppose"</span>, <span class='st'>"Oppose"</span>, <span class='st'>"Moderate Oppose"</span>, <span class='st'>"Neutral"</span>, <span class='st'>"Moderate Support"</span>, <span class='st'>"Support"</span>, <span class='st'>"Strong Support"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>lobbying_activities</span> <span class='op'>&lt;-</span> <span class='va'>lobbying_activities</span> <span class='op'>|&gt;</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>advancement_breakdown <span class='op'>=</span> <span class='fu'><a href='https://forcats.tidyverse.org/reference/fct_relevel.html'>fct_relevel</a></span><span class='op'>(</span><span class='va'>advancement_breakdown</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Enacted"</span>, <span class='st'>"Passed Chamber"</span>, <span class='st'>"Floor Vote"</span>, <span class='st'>"Passed Committee"</span>, <span class='st'>"Failed In Committee"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>lobbying_activities</span> <span class='op'>&lt;-</span> <span class='va'>lobbying_activities</span> <span class='op'>|&gt;</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>final_status <span class='op'>=</span> <span class='fu'><a href='https://forcats.tidyverse.org/reference/fct_relevel.html'>fct_relevel</a></span><span class='op'>(</span><span class='va'>final_status</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Failed"</span>, <span class='st'>"Enacted"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>lobbying_activities</span> <span class='op'>&lt;-</span> <span class='va'>lobbying_activities</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>intro_maj <span class='op'>=</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/if_else.html'>if_else</a></span><span class='op'>(</span></span>
+<span>    <span class='va'>intro_pid</span> <span class='op'>==</span> <span class='st'>"majority"</span>, <span class='st'>"1"</span>, <span class='st'>"0"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>lobbying_activities</span><span class='op'>$</span><span class='va'>intro_maj</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>lobbying_activities</span><span class='op'>$</span><span class='va'>intro_maj</span><span class='op'>)</span></span></code></pre>
 </div>
-<p><img src="index_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
 </div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+#NUMBER OF BILLS
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>lobbying_activities</span> <span class='op'>|&gt;</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>advancement_breakdown</span><span class='op'>)</span> <span class='op'>|&gt;</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>n<span class='op'>=</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/context.html'>n</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span> <span class='fu'><a href='https://tidyr.tidyverse.org/reference/pivot_wider.html'>pivot_wider</a></span><span class='op'>(</span>names_from <span class='op'>=</span> <span class='va'>advancement_breakdown</span>, values_from <span class='op'>=</span> <span class='va'>n</span><span class='op'>)</span> <span class='op'>|&gt;</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span><span class='st'>"Combined"</span> <span class='op'>=</span> <span class='va'>`Passed Chamber`</span> <span class='op'>+</span> <span class='va'>`Floor Vote`</span> <span class='op'>+</span> <span class='va'>`Passed Committee`</span><span class='op'>)</span> <span class='op'>|&gt;</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>Enacted</span>, <span class='va'>Combined</span>, <span class='va'>`Failed In Committee`</span><span class='op'>)</span> <span class='op'>|&gt;</span> <span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span>col.names <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Number of Bills Enacted"</span>, <span class='st'>"Combined Number of Bills that Passed Chamber, had a Floor Vote, or Passed Committee"</span>, <span class='st'>"Number of Bills That Failed In Committee"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<table>
+<thead>
+<tr>
+<th style="text-align:right;">
+Number of Bills Enacted
+</th>
+<th style="text-align:right;">
+Combined Number of Bills that Passed Chamber, had a Floor Vote, or Passed Committee
+</th>
+<th style="text-align:right;">
+Number of Bills That Failed In Committee
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+8752
+</td>
+<td style="text-align:right;">
+3187
+</td>
+<td style="text-align:right;">
+14112
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+#Summary Plots of Dependent Variables
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>plotA</span> <span class='op'>&lt;-</span> </span>
+<span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>lobbying_activities</span>, mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>level_of_support</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_bar</a></span><span class='op'>(</span>position <span class='op'>=</span> <span class='st'>"dodge"</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>facet_wrap</a></span><span class='op'>(</span><span class='op'>~</span> <span class='va'>final_status</span>, ncol <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>axis.text.x <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>angle <span class='op'>=</span> <span class='fl'>60</span>, vjust <span class='op'>=</span> <span class='fl'>1</span>, hjust <span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span>, panel.spacing <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/grid/unit.html'>unit</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='st'>"lines"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span></span>
+<span>      x <span class='op'>=</span> <span class='st'>"Level of Support"</span>,</span>
+<span>      y <span class='op'>=</span> <span class='st'>"Number of Bills"</span>,</span>
+<span>      title <span class='op'>=</span> <span class='st'>"Relationship Between Net Lobbying Activity and Final Bill Status"</span>,</span>
+<span>      subtitle <span class='op'>=</span> <span class='st'>"Plot A"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>plotB</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>lobbying_activities</span>, mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>level_of_support</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_bar</a></span><span class='op'>(</span>position <span class='op'>=</span> <span class='st'>"dodge"</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>facet_wrap</a></span><span class='op'>(</span><span class='op'>~</span> <span class='va'>advancement_breakdown</span>, ncol <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>axis.text.x <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>angle <span class='op'>=</span> <span class='fl'>60</span>, vjust <span class='op'>=</span> <span class='fl'>1</span>, hjust <span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span>, panel.spacing <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/grid/unit.html'>unit</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='st'>"lines"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span></span>
+<span>    x <span class='op'>=</span> <span class='st'>"Level of Support"</span>,</span>
+<span>    y <span class='op'>=</span> <span class='st'>"Number of Bills"</span>,</span>
+<span>    title <span class='op'>=</span> <span class='st'>"Relationship Between Net Lobbying Activity and Bill Advancement"</span>, </span>
+<span>    subtitle <span class='op'>=</span> <span class='st'>"Plot B"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>plotA</span></span></code></pre>
+</div>
+<img src="index_files/figure-html5/unnamed-chunk-4-1.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>plotB</span></span></code></pre>
+</div>
+<p><img src="index_files/figure-html5/unnamed-chunk-4-2.png" width="624" /></p>
+</div>
+<p>The summary plots suggests that lobbying has some impact on bill advancement, but its effects are still somewhat unclear. Plot A clearly demonstrates that more bills enacted generally face limited opposition. Likewise, Plot A also demonstrates that bills that fail are more likely to experience more lobbying opposition.</p>
+<p>Plot B’s results are more unclear. On its surface, it seems to suggest that bills that experience some advancement, but are ultimately not implemented, are more likely to expeirience moderate to neutral reactions, compared to bills that are enacted or bills that fail in committee. This may suggest that even if a bill experiences limited oppositions, it nonetheless is less likely to be enacted without strong backers.</p>
+#Main Variable Regression: Passage or Failure
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>singregression_passfail</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>enacted</span> <span class='op'>~</span> <span class='va'>for_against_balance_before_final</span>, data <span class='op'>=</span> <span class='va'>lobbying_activities</span><span class='op'>)</span></span>
+<span><span class='va'>singregression_passfail</span></span></code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = enacted ~ for_against_balance_before_final, data = lobbying_activities)
+
+Coefficients:
+                     (Intercept)  for_against_balance_before_final  
+                         0.30267                           0.01895  </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>signregression_passfailvarnames</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"(Intercept)"</span> <span class='op'>=</span> <span class='st'>"Intercept"</span>,</span>
+<span>               <span class='st'>"for_against_balance_before_final"</span> <span class='op'>=</span> <span class='st'>"Net Lobbyist Positions Variable"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'>modelsummary</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/modelsummary/man/modelsummary.html'>modelsummary</a></span><span class='op'>(</span><span class='va'>singregression_passfail</span>, statistic <span class='op'>=</span> <span class='st'>"p.value"</span>, </span>
+<span>                           gof_map <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"nobs"</span>, <span class='st'>"r.squared"</span>, <span class='st'>"adj.r.squared"</span><span class='op'>)</span>, </span>
+<span>                           coef_map <span class='op'>=</span> <span class='va'>signregression_passfailvarnames</span><span class='op'>)</span></span></code></pre>
+</div>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+ (1)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Intercept
+</td>
+<td style="text-align:center;">
+0.303
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+(&lt;0.001)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Net Lobbyist Positions Variable
+</td>
+<td style="text-align:center;">
+0.019
+</td>
+</tr>
+<tr>
+<td style="text-align:left;box-shadow: 0px 1.5px">
+</td>
+<td style="text-align:center;box-shadow: 0px 1.5px">
+(&lt;0.001)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Num.Obs.
+</td>
+<td style="text-align:center;">
+26051
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2
+</td>
+<td style="text-align:center;">
+0.057
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2 Adj.
+</td>
+<td style="text-align:center;">
+0.057
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The intercept is 0.303, meaning that, should a bill have net 0 lobbying positions (ie the amount of negative lobbying positions equals the amount of positive lobbying positions), then it has a 30.3 percent chance of passing. The slope is 0.019, meaning that, for each additional supportive lobbying position, the bills chances of passing increase by 1.9 percent.</p>
+<p>The P-value is less than 0.001, which means that this regression is statistically significant, at an alpha level of 0.05. In other words, this p value functionally means that should the amount of lobbying positions have no impact on a bill’s chances of passage, there would be a less than 0.001 chance of collecting the results the expierementers did. Still, this cannot be interpreted causally: this was a cross-sectional, not experimental, design.</p>
+<p>#Main Variable Regression: Committee, Floor, and Chamber Passage
+While interest groups are ultimately interested in a bill’s final status, they nonetheless may be interested to know if lobbying can have a divergent impact on different stages in the process. I thus also run three linear regression that analyze lobbying’s impact on the three bill stages collected within this data frame: a bill passing out of committee, a bill making it onto a floor, and a bill making it out of the chamber.</p>
+##Committee Passage
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>singregression_passed_committee</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>passed_committee</span> <span class='op'>~</span> <span class='va'>for_against_balance_before_final</span>, data <span class='op'>=</span> <span class='va'>lobbying_activities</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>singregression_passed_committee_varnames</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"(Intercept)"</span> <span class='op'>=</span> <span class='st'>"Intercept"</span>,</span>
+<span>               <span class='st'>"for_against_balance_before_final"</span> <span class='op'>=</span> <span class='st'>"Net Lobbyist Positions Variable"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'>modelsummary</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/modelsummary/man/modelsummary.html'>modelsummary</a></span><span class='op'>(</span><span class='va'>singregression_passed_committee</span>, statistic <span class='op'>=</span> <span class='st'>"p.value"</span>, </span>
+<span>                           gof_map <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"nobs"</span>, <span class='st'>"r.squared"</span>, <span class='st'>"adj.r.squared"</span><span class='op'>)</span>, </span>
+<span>                           coef_map <span class='op'>=</span> <span class='va'>singregression_passed_committee_varnames</span><span class='op'>)</span></span></code></pre>
+</div>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+ (1)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Intercept
+</td>
+<td style="text-align:center;">
+0.427
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+(&lt;0.001)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Net Lobbyist Positions Variable
+</td>
+<td style="text-align:center;">
+0.018
+</td>
+</tr>
+<tr>
+<td style="text-align:left;box-shadow: 0px 1.5px">
+</td>
+<td style="text-align:center;box-shadow: 0px 1.5px">
+(&lt;0.001)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Num.Obs.
+</td>
+<td style="text-align:center;">
+26051
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2
+</td>
+<td style="text-align:center;">
+0.046
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2 Adj.
+</td>
+<td style="text-align:center;">
+0.046
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>On lobbying’s impact on a bill’s chances of passing committee, it has an intercept of 0.379. This means that, should a bill have net 0 lobbying positions (ie the amount of negative lobbying positions equals the amount of positive lobbying positions), then it has a 37.9 percent chance of passing.The slope is 0.018, meaning that, for each additional supportive lobbying position, the bills chances of passing out of committee increase by 1.8 percent.</p>
+<p>The P-value is less than 0.001, which means that this regression is statistically significant, at an alpha level of 0.05. In other words, this p value functionally means that should the amount of lobbying positions have no impact on a bill’s chances of passage out of committee, there would be a less than 0.001 chance of collecting the results the expierementers did.</p>
+#Floor Appearance
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>lobbying_activities_floor_vote</span> <span class='op'>&lt;-</span> <span class='va'>lobbying_activities</span> <span class='op'>|&gt;</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>passed_committee</span> <span class='op'>==</span> <span class='fl'>1</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>singregression_reached_floor</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>reached_floor</span> <span class='op'>~</span> <span class='va'>for_against_balance_before_final</span>, data <span class='op'>=</span> <span class='va'>lobbying_activities_floor_vote</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>singregression_reached_floor_varnames</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"(Intercept)"</span> <span class='op'>=</span> <span class='st'>"Intercept"</span>,</span>
+<span>               <span class='st'>"for_against_balance_before_final"</span> <span class='op'>=</span> <span class='st'>"Net Lobbyist Positions Variable"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'>modelsummary</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/modelsummary/man/modelsummary.html'>modelsummary</a></span><span class='op'>(</span><span class='va'>singregression_reached_floor</span>, statistic <span class='op'>=</span> <span class='st'>"p.value"</span>, </span>
+<span>                           gof_map <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"nobs"</span>, <span class='st'>"r.squared"</span>, <span class='st'>"adj.r.squared"</span><span class='op'>)</span>, </span>
+<span>                           coef_map <span class='op'>=</span> <span class='va'>singregression_reached_floor_varnames</span><span class='op'>)</span></span></code></pre>
+</div>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+ (1)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Intercept
+</td>
+<td style="text-align:center;">
+0.884
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+(&lt;0.001)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Net Lobbyist Positions Variable
+</td>
+<td style="text-align:center;">
+0.004
+</td>
+</tr>
+<tr>
+<td style="text-align:left;box-shadow: 0px 1.5px">
+</td>
+<td style="text-align:center;box-shadow: 0px 1.5px">
+(&lt;0.001)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Num.Obs.
+</td>
+<td style="text-align:center;">
+11939
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2
+</td>
+<td style="text-align:center;">
+0.007
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2 Adj.
+</td>
+<td style="text-align:center;">
+0.006
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>On lobbying’s impact on a bill’s chances of getting to the floor, I filter out the results so that we are only looking at bills that can be considered for floor consideration (ie those that passed out of committee). As the chart shows, the intercept is 0.884 - meaning that, should a bill already have passed committee, and there is no net change in the lobbying position, we would expect there to be an 88.4 percent chance of the bill appearing on the floor. The slope is 0.004, meaning that we would expect there to a 0.4 percent increase in the chances of a bill appearing on the floor, for each one additional supportive lobbying position.</p>
+<p>The P-value is less than 0.001, which means that this regression is statistically significant, at an alpha level of 0.05. In other words, this p value functionally means that should the amount of lobbying positions have no impact on a bill’s chances of getting onto the floor, there would be a less than 0.001 chance of collecting the results the expierementers did.</p>
+##Chamber Passage
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>chamber_vote</span> <span class='op'>&lt;-</span> <span class='va'>lobbying_activities</span> <span class='op'>|&gt;</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>reached_floor</span> <span class='op'>==</span> <span class='fl'>1</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>singregression_passed_chamber</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>passed_chamber</span> <span class='op'>~</span> <span class='va'>for_against_balance_before_final</span>, data <span class='op'>=</span> <span class='va'>chamber_vote</span><span class='op'>)</span></span>
+<span><span class='va'>singregression_passed_committee</span></span></code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = passed_committee ~ for_against_balance_before_final, 
+    data = lobbying_activities)
+
+Coefficients:
+                     (Intercept)  for_against_balance_before_final  
+                         0.42675                           0.01795  </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>singregression_passed_chamber_varnames</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"(Intercept)"</span> <span class='op'>=</span> <span class='st'>"Intercept"</span>,</span>
+<span>               <span class='st'>"for_against_balance_before_final"</span> <span class='op'>=</span> <span class='st'>"Net Lobbyist Positions Variable"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'>modelsummary</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/modelsummary/man/modelsummary.html'>modelsummary</a></span><span class='op'>(</span><span class='va'>singregression_passed_chamber</span>, statistic <span class='op'>=</span> <span class='st'>"p.value"</span>, </span>
+<span>                           gof_map <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"nobs"</span>, <span class='st'>"r.squared"</span>, <span class='st'>"adj.r.squared"</span><span class='op'>)</span>, </span>
+<span>                           coef_map <span class='op'>=</span> <span class='va'>singregression_passed_chamber_varnames</span><span class='op'>)</span></span></code></pre>
+</div>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+ (1)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Intercept
+</td>
+<td style="text-align:center;">
+0.985
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+(&lt;0.001)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Net Lobbyist Positions Variable
+</td>
+<td style="text-align:center;">
+0.001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;box-shadow: 0px 1.5px">
+</td>
+<td style="text-align:center;box-shadow: 0px 1.5px">
+(&lt;0.001)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Num.Obs.
+</td>
+<td style="text-align:center;">
+10704
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2
+</td>
+<td style="text-align:center;">
+0.001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2 Adj.
+</td>
+<td style="text-align:center;">
+0.001
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>To analyze lobbying’s impact on a bill’s chances to to pass a legislative chamber, I only consider those bills that have the potential to pass a chamber (ie bills that have apoeared on the floor). Here, the intercept is 0.985 - meaning that once a bill appears on the floor, it has a 98.5 percent chance of passing the chamber, even if there is no change in the net lobbying positions. The slope is 0.001 - meaning that for each additionalsupportive lobbying position, we can expect a bill’s chances to advance out of the chamber to improve by one percent.</p>
+<p>The P-value is less than 0.001, which means that this regression is statistically significant, at an alpha level o
+0.05. In other words, this p value functionally means that should the amount of lobbying positions have no impact on a bill’s chances of advancing out of the chamber, there would be a less than 0.001 chance of collecting the results the experimenters did.</p>
+<p>#Multi Variable Regression: Lobbying</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>multiregression</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>enacted</span> <span class='op'>~</span> <span class='va'>for_against_balance_before_final</span> <span class='op'>+</span>  <span class='va'>intro_maj</span> <span class='op'>+</span> <span class='va'>for_against_final</span> <span class='op'>+</span> <span class='va'>key_vote</span> <span class='op'>+</span> <span class='va'>maj_leader_intro</span>, data <span class='op'>=</span> <span class='va'>lobbying_activities</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>varnames2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"(Intercept)"</span> <span class='op'>=</span> <span class='st'>"Intercept"</span>,</span>
+<span>               <span class='st'>"for_against_balance_before_final"</span> <span class='op'>=</span> <span class='st'>"Net Lobbying Positions"</span>,</span>
+<span>               <span class='st'>"intro_maj"</span> <span class='op'>=</span> <span class='st'>"Introducing Party Majority"</span>,</span>
+<span>               <span class='st'>"for_against_final"</span> <span class='op'>=</span> <span class='st'>"Sum of all lobbying positions"</span>,</span>
+<span>               <span class='st'>"key_vote"</span> <span class='op'>=</span> <span class='st'>"Considered Key Vote"</span>,</span>
+<span>               <span class='st'>"maj_leader_intro"</span> <span class='op'>=</span> <span class='st'>"Introduced by Majority Leader"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'>modelsummary</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/modelsummary/man/modelsummary.html'>modelsummary</a></span><span class='op'>(</span><span class='va'>multiregression</span>, statistic <span class='op'>=</span> <span class='st'>"p.value"</span>,</span>
+<span>                           gof_map <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"nobs"</span>, <span class='st'>"r.squared"</span>, <span class='st'>"adj.r.squared"</span><span class='op'>)</span>,</span>
+<span>                           coef_map <span class='op'>=</span> <span class='va'>varnames2</span><span class='op'>)</span></span></code></pre>
+</div>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+ (1)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Intercept
+</td>
+<td style="text-align:center;">
+0.225
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+(&lt;0.001)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Net Lobbying Positions
+</td>
+<td style="text-align:center;">
+0.013
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+(&lt;0.001)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Considered Key Vote
+</td>
+<td style="text-align:center;">
+0.368
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+(&lt;0.001)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Introduced by Majority Leader
+</td>
+<td style="text-align:center;">
+0.041
+</td>
+</tr>
+<tr>
+<td style="text-align:left;box-shadow: 0px 1.5px">
+</td>
+<td style="text-align:center;box-shadow: 0px 1.5px">
+(&lt;0.001)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Num.Obs.
+</td>
+<td style="text-align:center;">
+26051
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2
+</td>
+<td style="text-align:center;">
+0.091
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2 Adj.
+</td>
+<td style="text-align:center;">
+0.091
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The intercept is .225, which implies that when all other variables are 0, a bill has a 22.5 percent chance of enactment Within the confounder variables, kwy vote has the greatest slope, at 0.368, which means that, holding all else constant, an being considered a key vote is expected to imporve a bill’s chance at enactment by 36.8 percent. Moreover, introduced by majority leader also has a greater magnitude than lobbying at 0.041, which means that, holding all else constant, should a bill be introduced by the majority leader, it will improve its chances of passing by 4.1 percent. Finally, the slope of the net lobbying positions is 0.013, which means that, holding all else constant, we expect each additional supportive position to increase a bill’s chances of passage by 1.3 percent,</p>
+<p>Because all the coeficients in this table have a p value of less than 0.001, they are significant, at an alpha level of 0.05.</p>
+<p>#Conclusion
+In this paper</p>
+<p>###Appendix A: All Variables</p>
+<h2 id="name-description">Name Description</h2>
+<p><code>state</code> The state the bill was introduced in
+<code>session</code> The year of the legislative session
+<code>statesession</code> A combined variable for <code>state</code> and <code>session</code>
+<code>bill_number</code> The number of the bill.
+<code>legtype</code> The type of legislation (ie House Bill, Senate Bill, etc.)
+<code>enacted</code> <code>1</code> if signed into law, <code>0</code> if not.
+<code>passed_chamber</code> <code>1</code> if bill passed the legislative chamber, <code>0</code> if not.
+<code>reached_floor</code> <code>1</code> if bill passed the full floor of the legislative chamber, <code>0</code> if not.
+<code>passed_committee</code> <code>1</code> if bill passed committee, <code>0</code> if not.
+<code>num_for_before_committee</code> Wisconsin Only - number of interests who supported bill in committee
+<code>num_against_before_committee</code> Wisconsin Only - number of interests who opposed bill in committee
+<code>num_for_before_floor</code> Wisconsin Only - number of interests who supported bill before it reached the floor
+<code>num_for_before_pass</code> Wisconsin Only - number of interests who supported bill before it passed in chamber of origin
+<code>num_against_before_pass</code> Wisconsin Only - number of interests who opposed bill before it passed in chamber of origin
+<code>num_for_before_final</code> Number of interests who supported bill at any point in legislative process.
+<code>num_against_before_final</code> Number of interests who opposed bill at any point in legislative process.
+<code>num_other_before_final</code> Number of interests who spoke on bill, but did not speak for or against bill at any point in legislative process.
+<code>for_against_balance_before_final</code> Difference between <code>num_for_before_final</code> and <code>num_against_before_final</code><br />
+<code>for_against_final</code> The sum of the number of interests taking positions for or against the bill
+<code>for_against_pass</code> Wisconsin only. Indicator for lobbying patterns on bills before they pass chamber of origin. Takes on values of none, only for, only against, and for and against
+<code>for_against_floor</code> Wisconsin only. Indicator for lobbying patterns on bills before they reach chamber floor. Takes on values of none, only for, only against, and for and against
+<code>for_against_committee</code> Wisconsin only. Indicator for lobbying patterns on bills during committee process. Takes on values of none, only for, only against, and for and against
+<code>for_against_other_final</code> Indicator of the pattern of lobbying on the bill by the end of the legislative session with <code>other" included; takes on values of none, only for, only against, for and against, other, for and other, against and other, and for, against, and other. `for_against_other_pass`               Wisconsin only. Indicator of the pattern of lobbying on the bill before it passes in its chamber of origin with</code>other” included; takes on values of none, only for, only against, for and against, other, for and other, against and other, and for, against, and other
+<code>for_against_other_floor</code> Wisconsin only. An indicator of the pattern of lobbying on the bill before reached the floor in its chamber of origin with `<code>other" included; takes on values of none, only for, only against, for and against, other, for and other, against and other, and for, against, and other</code>chamber_pol<code>Chamber polarization from Shor and McCarty (2011).</code>chamber_maj_pty<code>The party in control of chamber.</code>intro_pid<code>Partisanship of all of bills sponsors, coded as "majority" if only majority party members sponsor the bill, "minority" if only minority members sponsor the bill, and "indeterminate" if legislators from both majority and minority sponsor bill.</code>maj_leader_intro<code></code>1<code>if bill introduced by majority leader,</code>0<code>if not.</code>min_leader_intro<code></code>1<code>if bill introduced by minority leader,</code>0<code>if not.</code>squire<code>Legislature Squire score (used to measure level of professionalization in state legislature)</code>duplicate_bill<code></code>1<code>if bill was introduced in previous session,</code>0<code>if not.</code>key_vote<code></code>1<code>if bill was deemed key vote by Project Smart,</code>0` if not.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
