@@ -1551,12 +1551,13 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h2 id="the-data">THE DATA</h2>
 <p>I use the replication data from “Does Lobbying Affect Bill Advancement? Evidence from Three State Legislatures” (Butler and Miller). The dataset focuses on over 26,000 bills from Colorado, Nebraska, and Wisconsin. Lobbying data was collected through public disclosure forms, while outcomes were collected through the state legislature website. Researchers used a longitudinal cross-sectional design.</p>
 <p>It includes a number of variables, a full description of which is included in appendix A. For the purposes of this analysis, I focus on the following variables:</p>
+<hr />
 <p><code>state</code>: The state the bill was introduced in</p>
 <p><code>session</code>: The year of the legislative session</p>
 <p><code>enacted</code>: <code>1</code> if signed into law, <code>0</code> if not.</p>
-<p><code>passed_chamber</code>: 1<code>if bill passed the legislative chamber,</code>0` if not.</p>
-<p><code>reached_floor</code>:<code>1</code> if bill reached the full floor of the legislative chamber, <code>0</code> if not.</p>
-<p><code>passed_committee</code>:<code>1</code> if bill passed committee, <code>0</code> if not.</p>
+<p><code>passed_chamber</code>: <code>1</code> if bill passed the legislative chamber, <code>0</code> if not.</p>
+<p><code>reached_floor</code>: <code>1</code> if bill reached the full floor of the legislative chamber, <code>0</code> if not.</p>
+<p><code>passed_committee</code>: <code>1</code> if bill passed committee, <code>0</code> if not.</p>
 <p><code>num_for_before_final</code>: Number of interests who supported bill at any point in legislative process.</p>
 <p><code>num_against_before_final</code>: Number of interests who opposed bill at any point in legislative process.</p>
 <p><code>num_other_before_final</code>: Number of interests who spoke on bill, but did not speak for or against bill at any point in legislative process.</p>
@@ -1567,6 +1568,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p><code>maj_leader_intro</code>: <code>1</code> if bill introduced by majority leader, <code>0</code> if not.</p>
 <p><code>min_leader_intro</code>: <code>1</code> if bill introduced by minority leader, <code>0</code> if not.</p>
 <p><code>key_vote</code>: <code>1</code> if bill was deemed key vote by Project Smart, <code>0</code> if not.</p>
+<hr />
+<h2 id="data-mutations">DATA MUTATIONS</h2>
 <p>I treat <code>enacted</code>, and a newly mutated version of <code>enacted</code> that assigns it the values “Enacted” and “Failed,” as my primary outcome variable. This is for two reasons. Practically, there are far less “Passed Chamber”, “Floor Vote”, and “Passed Committee” rows than the “Enacted” and “Failed In Committee” rows (see Chart A). Second, and more substantively, though interest groups may be interested to know at what part of the legislative process lobbying activities are successful, they are ultimately are more concerned with whether a bill becomes law or not. In other words, a bill that dies on the floor by one vote versus a bill that didn’t even make it out of committee has the same ultimate impact: they do not become law.</p>
 <p>Moreover, because it is informative to understand when lobbying’s impact diminishes, I will also treat <code>passed_chamber</code>, <code>reached_floor</code>, and <code>passed_committee</code> as relavent outcome variables.</p>
 <p>I also create a number of new variables, largely to assist in drawing plots, as many outcome variables are binary variables that can make it difficult to visualize relationships. First, I create the variable <code>advancement_breakdown</code>. <code>advancement_breakdown</code> will be used to visualize a bill’s advancement more in-depth. It sorts bills into five categories, based on their final status: “Enacted”, “Passed Chamber”, “Floor Vote”, “Passed Committee”, and “Failed In Committee”.</p>

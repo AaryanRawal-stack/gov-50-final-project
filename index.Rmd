@@ -21,18 +21,19 @@ I use the replication data from "Does Lobbying Affect Bill Advancement? Evidence
 
 It includes a number of variables, a full description of which is included in appendix A. For the purposes of this analysis, I focus on the following variables:
 
+---- 
 
 `state`: The state the bill was introduced in
 
 `session`: The year of the legislative session
 
-`enacted`: `1` if signed into law, `0` if not. 
+`enacted`:  `1` if signed into law, `0` if not. 
 
-`passed_chamber`: 1` if bill passed the legislative chamber, `0` if not. 
+`passed_chamber`: `1` if bill passed the legislative chamber, `0` if not. 
 
-`reached_floor`:`1` if bill reached the full floor of the legislative chamber, `0` if not. 
+`reached_floor`: `1` if bill reached the full floor of the legislative chamber, `0` if not. 
 
-`passed_committee`:`1` if bill passed committee, `0` if not. 
+`passed_committee`: `1` if bill passed committee, `0` if not. 
 
 `num_for_before_final`: Number of interests who supported bill at any point in legislative process.
 
@@ -48,12 +49,14 @@ It includes a number of variables, a full description of which is included in ap
 
 `intro_pid`: Partisanship of all of bills sponsors, coded as "majority" if only majority party members sponsor the bill, "minority" if only minority members sponsor the bill, and "indeterminate" if legislators from both majority and minority sponsor bill.
 
-`maj_leader_intro`: `1` if bill introduced by majority leader, `0` if not.
+`maj_leader_intro`:  `1` if bill introduced by majority leader, `0` if not.
 
-`min_leader_intro`: `1` if bill introduced by minority leader, `0` if not.
+`min_leader_intro`:  `1` if bill introduced by minority leader, `0` if not.
 
-`key_vote`: `1` if bill was deemed key vote by Project Smart, `0` if not.   
+`key_vote`:  `1` if bill was deemed key vote by Project Smart, `0` if not.   
 
+----
+## DATA MUTATIONS
 
 I treat `enacted`, and a newly mutated version of `enacted` that assigns it the values "Enacted" and "Failed," as my primary outcome variable. This is for two reasons. Practically, there are far less "Passed Chamber", "Floor Vote", and "Passed Committee" rows than the "Enacted" and "Failed In Committee" rows (see Chart A). Second, and more substantively, though interest groups may be interested to know at what part of the legislative process lobbying activities are successful, they are ultimately are more concerned with whether a bill becomes law or not. In other words, a bill that dies on the floor by one vote versus a bill that didn't even make it out of committee has the same ultimate impact: they do not become law.
 
